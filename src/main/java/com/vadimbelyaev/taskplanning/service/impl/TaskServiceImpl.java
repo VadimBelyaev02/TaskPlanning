@@ -8,6 +8,7 @@ import com.vadimbelyaev.taskplanning.exception.NotFoundException;
 import com.vadimbelyaev.taskplanning.repository.TaskRepository;
 import com.vadimbelyaev.taskplanning.service.TaskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.AlreadyBoundException;
 import java.util.List;
@@ -26,6 +27,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public TaskDto getById(UUID id) {
         Task task = repository.findById(id).orElseThrow(() ->
                 new NotFoundException("Task with id = " + id + " is not found")
@@ -34,6 +36,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public List<TaskDto> getAll() {
         return repository.findAll().stream()
                 .map(converter::convertToDto)
@@ -41,6 +44,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public TaskDto save(TaskDto taskDto) {
         if (repository.existsById(taskDto.getId())) {
             throw new AlreadyExistsException("Task with id = " + taskDto.getId() + " already exists");
@@ -50,6 +54,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public TaskDto update(TaskDto taskDto) {
         if (!repository.existsById(taskDto.getId())) {
             throw new NotFoundException("Task with id = " + taskDto.getId() + " is not found");
@@ -59,6 +64,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public void deleteById(UUID id) {
         if (!repository.existsById(id)) {
             throw new NotFoundException("Task with id = " + id + " is not found");
