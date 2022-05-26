@@ -3,6 +3,7 @@ package com.vadimbelyaev.taskplanning.controller;
 import com.vadimbelyaev.taskplanning.dto.RankDto;
 import com.vadimbelyaev.taskplanning.service.RankService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class RankController {
     }
 
     @Operation(summary = "Get Rank by its id")
+    @ApiResponse(description = "Rank is found and returned", responseCode = "200")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RankDto getRank(@PathVariable("id") UUID id) {
@@ -29,6 +31,7 @@ public class RankController {
     }
 
     @Operation(summary = "Get all Ranks")
+    @ApiResponse(description = "Rank is found and returned", responseCode = "200")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<RankDto> getAllRanks() {
@@ -36,6 +39,7 @@ public class RankController {
     }
 
     @Operation(summary = "Add a new Rank")
+    @ApiResponse(description = "Rank is successfully added and returned saved", responseCode = "201")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RankDto postRank(@RequestBody RankDto rankDto) {
@@ -43,6 +47,7 @@ public class RankController {
     }
 
     @Operation(summary = "Updated an existed Rank")
+    @ApiResponse(description = "Existed Rank is successfully updated by sent object and returned", responseCode = "200")
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public RankDto putRank(@RequestBody RankDto rankDto) {
@@ -50,6 +55,7 @@ public class RankController {
     }
 
     @Operation(summary = "Delete an existed Rank")
+    @ApiResponse(description = "Existed Rank is successfully deleted", responseCode = "204")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRank(@PathVariable("id") UUID id) {

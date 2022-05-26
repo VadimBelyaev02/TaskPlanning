@@ -3,6 +3,7 @@ package com.vadimbelyaev.taskplanning.controller;
 import com.vadimbelyaev.taskplanning.dto.StatisticsDto;
 import com.vadimbelyaev.taskplanning.service.StatisticsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class StatisticsController {
     }
 
     @Operation(summary = "Get a Statistics by its id")
+    @ApiResponse(description = "Statistics is found and given to you", responseCode = "200")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public StatisticsDto getStatistics(@PathVariable("id") UUID id) {
@@ -29,6 +31,7 @@ public class StatisticsController {
     }
 
     @Operation(summary = "Get all Statistics")
+    @ApiResponse(description = "All statistics are found and returned", responseCode = "200")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<StatisticsDto> getAll() {
@@ -36,6 +39,7 @@ public class StatisticsController {
     }
 
     @Operation(summary = "Add a new Statistics")
+    @ApiResponse(description = "A new Statistics is successfully saved and returned", responseCode = "201")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public StatisticsDto postStatistics(@RequestBody StatisticsDto statisticsDto) {
@@ -43,6 +47,7 @@ public class StatisticsController {
     }
 
     @Operation(summary = "Update an existed Statistics")
+    @ApiResponse(description = "An existed Statistics is successfully updated and returned", responseCode = "200")
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public StatisticsDto putStatistics(@RequestBody StatisticsDto statisticsDto) {
@@ -50,6 +55,7 @@ public class StatisticsController {
     }
 
     @Operation(summary = "Delete an existed Statistics")
+    @ApiResponse(description = "An existed Statistics is successfully deleted", responseCode = "204")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteStatistics(@PathVariable("id") UUID id) {
