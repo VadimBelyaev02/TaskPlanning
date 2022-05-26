@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -29,6 +30,12 @@ public class User {
     @JoinColumn(name = "rank_id")
     private Rank rank;
 
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     private Confirmation confirmation;
+
+    @OneToOne(mappedBy = "user")
+    private Statistics statistics;
+
+    @OneToMany(mappedBy = "user")
+    private List<Task> tasks;
 }

@@ -22,7 +22,7 @@ public class Task {
     private UUID id;
 
     @Column(name = "datetime")
-    private LocalDateTime dataTime;
+    private LocalDateTime dateTime;
 
     @Column(name = "topic")
     private String topic;
