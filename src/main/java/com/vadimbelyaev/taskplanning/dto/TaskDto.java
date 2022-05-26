@@ -1,5 +1,6 @@
 package com.vadimbelyaev.taskplanning.dto;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,11 +19,14 @@ public class TaskDto {
 
     private LocalDateTime dateTime;
 
+    @NotNull
     private String topic;
 
     private String description;
 
+    @NotNull
     private UUID userId;
 
+    @NotNull
     private Integer score;
 }
