@@ -23,4 +23,6 @@ public class UserDto {
 
     @JsonIgnore
     private String password;
+
+    private UUID rankId;
 }
